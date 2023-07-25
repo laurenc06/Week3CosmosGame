@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7955102574301886545}
   - component: {fileID: 228046071381183643}
   - component: {fileID: 7926415753088710917}
+  - component: {fileID: -7332987775567538430}
+  - component: {fileID: -8811136458884698995}
   m_Layer: 0
   m_Name: Dog Base
   m_TagString: Untagged
@@ -105,3 +107,42 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-7332987775567538430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338302878156911562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837b98c3c68945e45b62c8fd104cd7c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wood: 0
+  gold: 0
+  team: 0
+  unitCap: 0
+  unitNum: 0
+  prefabBarracks: {fileID: 1279656584377056659, guid: d6e0f8b23392985418d0add97f0f9c4b, type: 3}
+  prefabCamp: {fileID: 3722297413380536538, guid: abc52fbd4679b824abaa3b519499ea20, type: 3}
+  spawnLocation: {x: 0, y: 0, z: 0}
+  createCamp: 0
+--- !u!114 &-8811136458884698995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338302878156911562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e538ba87e0df2c54c8521969604d9739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabWorker: {fileID: 5417472301570320269, guid: d2a094ca45e73db49925b7236906fbe8, type: 3}
+  createWorker: 0
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnRate: 5
+  lastSpawn: 0
+  teamBase: {fileID: 0}
