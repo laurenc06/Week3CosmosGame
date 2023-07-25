@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float speed = 3f; //speed of cam
+    public float speed = 5f; //speed of cam
     
     void start() {
 
@@ -18,10 +18,12 @@ public class CameraMovement : MonoBehaviour
             transform.position += Vector3.right * Time.deltaTime * speed;
         }
         if (Input.GetKey(KeyCode.W)) {
-            transform.position += Vector3.up * Time.deltaTime * speed;
+            Vector3 myVector = new Vector3(0,0,1);
+            transform.position += myVector * Time.deltaTime * speed;
         }
         if (Input.GetKey(KeyCode.S)) {
-            transform.position += Vector3.down * Time.deltaTime * speed;
+             Vector3 myVector = new Vector3(0,0,-1);
+             transform.position += myVector * Time.deltaTime * speed;
         }
         if (Input.GetKey(KeyCode.Q)) {
             transform.position += transform.forward * Time.deltaTime * speed;
