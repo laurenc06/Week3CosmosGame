@@ -16,7 +16,7 @@ public class WorkerScript : MonoBehaviour
     public float maxWeight = 25;
     public float woodCollected = 0;
     public float goldCollected = 0;
-    public float health;
+    public float health = 3f;
     public int teamNumber;
     public bool collectGold;
     public bool collectWood;
@@ -28,7 +28,6 @@ public class WorkerScript : MonoBehaviour
     {
         collectGold = false;
         collectWood = true;
-        health = 5;
         controller = GetComponent<StateController>();
         controller.ChangeState(new WorkerControl());
         buildRange = 5;
@@ -53,8 +52,19 @@ public class WorkerScript : MonoBehaviour
         return (woodCollected + goldCollected) >= maxWeight;
     }
 
+    public void takeDamage(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            Destroy(this.gameObject);
+        }
+    }
+
     void OnDrawGizmos(){
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(this.transform.position, this.viewRange);
+    }
+
+    public int getTeam(){
+        return teamNumber;
     }
 }

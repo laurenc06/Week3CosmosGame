@@ -8,12 +8,21 @@ public class WorkerRetrieve : State
     WorkerScript worker;
     NavMeshAgent agent;
     GameObject target;
+    public GameObject teamBase;
+    public GameObject[] teamBases;
 
     public override void OnEnter()
     {
         Debug.Log("WorkerRetrieve: OnEnter()");
         worker = sc.gameObject.GetComponent<WorkerScript>();
         agent = worker.GetComponent<NavMeshAgent>();
+        teamBases = GameObject.FindGameObjectsWithTag("Base");
+        for(int count = 0; count < teamBases.Length; count++){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber == worker.GetComponent<WorkerScript>().teamNumber){
+                teamBase = teamBases[count];
+            }
+        }
+        target = teamBase;
         FindBase();
     }
 
@@ -24,8 +33,7 @@ public class WorkerRetrieve : State
 
     public void FindBase()
     {
-        target = sc.FindClosestTarget("Base", Mathf.Infinity);
-        agent.destination = target.transform.position;
+        agent.destination = teamBase.transform.position;
     }
 
     public void TransferResources()
