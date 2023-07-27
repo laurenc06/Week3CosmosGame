@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2437266380788892128}
   - component: {fileID: 2925599953473029348}
   - component: {fileID: -309256698469881058}
+  - component: {fileID: 576478075025431501}
   m_Layer: 0
   m_Name: Cat Base
   m_TagString: Base
@@ -124,10 +125,20 @@ MonoBehaviour:
   team: 0
   unitCap: 0
   unitNum: 0
+  workerNum: 0
+  campNum: 0
+  barracksNum: 0
+  archerNum: 0
+  warriorNum: 0
   prefabBarracks: {fileID: 1279656584377056659, guid: d6e0f8b23392985418d0add97f0f9c4b, type: 3}
   prefabCamp: {fileID: 3722297413380536538, guid: abc52fbd4679b824abaa3b519499ea20, type: 3}
   spawnLocation: {x: 0, y: 0, z: 0}
   createCamp: 0
+  teamNumber: 0
+  waveNumber: 0
+  randomNum: 0
+  actionRate: 2
+  lastAction: 0
 --- !u!114 &-309256698469881058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +152,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabWorker: {fileID: 5417472301570320269, guid: d2a094ca45e73db49925b7236906fbe8, type: 3}
-  create: 0
+  createWorker: 0
   spawnPosition: {x: 0, y: 0, z: 0}
   spawnRate: 5
   lastSpawn: 0
+  teamNumber: 0
   teamBase: {fileID: 0}
+  teamBases: []
+  health: 0
+--- !u!114 &576478075025431501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677497137794516930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e052c2e40ab158c4d99ed42462d067e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

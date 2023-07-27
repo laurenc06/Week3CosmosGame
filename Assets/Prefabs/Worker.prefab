@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2200599720885666063}
   m_Layer: 0
   m_Name: Worker
-  m_TagString: Untagged
+  m_TagString: Worker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 60
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -172,10 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df6fcc818aa43d469e96519613044a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabBarracks: {fileID: 1279656584377056659, guid: d6e0f8b23392985418d0add97f0f9c4b, type: 3}
+  prefabCamp: {fileID: 3722297413380536538, guid: abc52fbd4679b824abaa3b519499ea20, type: 3}
+  buildBarracks: 0
+  buildCamp: 0
   viewRange: 50
   harvestRange: 3
+  buildRange: 3
   maxWeight: 25
   woodCollected: 0
+  teamNumber: 0
   harvestRate: 2
 --- !u!114 &2200599720885666063
 MonoBehaviour:

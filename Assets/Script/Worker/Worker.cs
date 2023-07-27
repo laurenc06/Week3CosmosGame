@@ -11,7 +11,8 @@ public class Worker : MonoBehaviour
     public float maxWeight = 25;
     public float woodCollected = 0;
     public float goldCollected = 0;
-    public float harvestRate = 2;           //per second
+    public float harvestRate = 2;   
+    public int teamNumber;        //per second
 
     // Start is called before the first frame update
     void Start()

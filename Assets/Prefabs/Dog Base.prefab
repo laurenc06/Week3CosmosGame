@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7926415753088710917}
   - component: {fileID: -7332987775567538430}
   - component: {fileID: -8811136458884698995}
+  - component: {fileID: -4322124489924387771}
   m_Layer: 0
   m_Name: Dog Base
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7955102574301886545
 MeshFilter:
@@ -101,7 +102,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -124,10 +125,20 @@ MonoBehaviour:
   team: 0
   unitCap: 0
   unitNum: 0
+  workerNum: 0
+  campNum: 0
+  barracksNum: 0
+  archerNum: 0
+  warriorNum: 0
   prefabBarracks: {fileID: 1279656584377056659, guid: d6e0f8b23392985418d0add97f0f9c4b, type: 3}
   prefabCamp: {fileID: 3722297413380536538, guid: abc52fbd4679b824abaa3b519499ea20, type: 3}
   spawnLocation: {x: 0, y: 0, z: 0}
   createCamp: 0
+  teamNumber: 0
+  waveNumber: 0
+  randomNum: 0
+  actionRate: 2
+  lastAction: 0
 --- !u!114 &-8811136458884698995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,4 +156,19 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0, z: 0}
   spawnRate: 5
   lastSpawn: 0
+  teamNumber: 0
   teamBase: {fileID: 0}
+  teamBases: []
+  health: 0
+--- !u!114 &-4322124489924387771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4338302878156911562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e052c2e40ab158c4d99ed42462d067e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

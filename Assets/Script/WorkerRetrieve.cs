@@ -34,10 +34,10 @@ public class WorkerRetrieve : State
         agent.ResetPath();
 
         TeamController teamController = target.GetComponent<TeamController>();
-        //teamController.gold += worker.goldCollected;
+        teamController.gold += worker.goldCollected;
         teamController.wood += worker.woodCollected;
 
-       // worker.goldCollected = 0;
+        worker.goldCollected = 0;
         worker.woodCollected = 0;
 
         Debug.Log("remove WorkerRetrieve()");

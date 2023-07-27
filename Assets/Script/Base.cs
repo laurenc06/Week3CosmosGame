@@ -10,13 +10,22 @@ public class Base : MonoBehaviour
     public Vector3 spawnPosition;
     public float spawnRate = 5f;
     public float lastSpawn = 0f;
+    public int teamNumber;
     public GameObject teamBase;
+    public GameObject[] teamBases;
+    public float health;
 
     void Start()
     {
+        health = 50;
         createWorker = false;
         spawnPosition = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z + 5);
-        teamBase = GameObject.Find("Cat Base");
+        teamBases = GameObject.FindGameObjectsWithTag("Base");
+        for(int count = 0; count < teamBases.Length; count++){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber == teamNumber){
+                teamBase = teamBases[count];
+            }
+        }
     }
 
     // Update is called once per frame
@@ -38,5 +47,7 @@ public class Base : MonoBehaviour
 
     public void CreateWorker(Vector3 spawnLocation){
         GameObject Worker = Object.Instantiate(prefabWorker, spawnLocation, Quaternion.identity);
+        Worker.GetComponent<WorkerScript>().teamNumber = teamBase.GetComponent<TeamController>().teamNumber;
+        teamBase.GetComponent<TeamController>().workerNum++;
     }
 }

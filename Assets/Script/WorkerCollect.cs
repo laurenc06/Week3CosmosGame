@@ -18,7 +18,11 @@ public class WorkerCollect : State
         //Debug.Log("OnEnter: " + worker);
 
         //Find nearest resources
-        FindNearestResource();
+        if(worker.GetComponent<WorkerScript>().collectGold){
+            FindNearestGold();
+        } else if (worker.GetComponent<WorkerScript>().collectWood){
+            FindNearestResource();
+        }
     }
 
     public override void OnUpdate()
@@ -33,26 +37,34 @@ public class WorkerCollect : State
         if (target == null)
         {
             //No resource, find next resource
-            FindNearestResource();
+            if(worker.GetComponent<WorkerScript>().collectGold){
+                FindNearestGold();
+            } else if (worker.GetComponent<WorkerScript>().collectWood){
+                FindNearestResource();
+            }
         }
         else if (worker.BackpackFull())
         {
             //Cannot carry anymore, transition to return state
             Debug.Log("WorkerGather() change to WorkerReturnResources()");
+            worker.GetComponent<WorkerScript>().collectWood = !worker.GetComponent<WorkerScript>().collectWood;
+            worker.GetComponent<WorkerScript>().collectGold = !worker.GetComponent<WorkerScript>().collectGold;
             sc.ChangeState(new WorkerRetrieve());
         }
         else if (Vector3.Distance(worker.transform.position, target.transform.position) <= worker.harvestRange)
         {
             //Resource in range, harvest
             agent.ResetPath();
-            // if (target.CompareTag("ResourceArea"))
-            // {
-                worker.woodCollected += worker.harvestRate * Time.deltaTime;
-            //}
-            // else if (target.CompareTag("Gold"))
-            // {
-            //     worker.goldCollected += worker.harvestRate * Time.deltaTime;
-            // }
+            if (target.CompareTag("ResourceArea"))
+            {
+                float collected = target.GetComponent<ResourceArea>().takeResource(worker.harvestRate);
+                worker.woodCollected += collected * Time.deltaTime;
+            }
+            else if (target.CompareTag("Gold"))
+            {
+                float collected = target.GetComponent<GoldArea>().takeGold(worker.harvestRate);
+                worker.goldCollected += worker.harvestRate * Time.deltaTime;
+            }
             // add this in when we have a second resourcearea
         }
     }
@@ -71,6 +83,22 @@ public class WorkerCollect : State
         {
             //No resource found, remove state
             sc.RemoveTop();
+        }
+        else
+        {
+            agent.destination = target.transform.position;
+        }
+    }
+
+    public void FindNearestGold(){
+        target = sc.FindClosestTarget("Gold", worker.viewRange);
+
+        if (target == null)
+        {
+            //No resource found, remove state
+            worker.GetComponent<WorkerScript>().collectWood = !worker.GetComponent<WorkerScript>().collectWood;
+            worker.GetComponent<WorkerScript>().collectGold = !worker.GetComponent<WorkerScript>().collectGold;
+            
         }
         else
         {
