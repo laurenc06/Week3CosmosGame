@@ -9,7 +9,14 @@ TagManager:
   - Wall
   - Dogs
   - Cats
-  - worker
+  - Soldier
+  - Ground
+  - Tree
+  - Team1
+  - Waypoint
+  - Worker
+  - Warrior
+  - Archer
   layers:
   - Default
   - TransparentFX

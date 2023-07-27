@@ -12,6 +12,8 @@ public class WorkerScript : MonoBehaviour
     public float woodCollected = 0;
     //public float goldCollected = 0;
     public float harvestRate = 2;           //per second
+    public int teamNumber = 0;
+    public float health = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,5 +31,16 @@ public class WorkerScript : MonoBehaviour
     public bool BackpackFull()
     {
         return (woodCollected /*+ goldCollected*/) >= maxWeight;
+    }
+
+     public void takeDamage(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public int getTeam() {
+        return teamNumber;
     }
 }

@@ -90,6 +90,59 @@ public class StateController : MonoBehaviour
         return closest;
     }
 
+    public GameObject FindClosestEnemy(float maxDistance, int currentTeam)
+    {
+        //brute force MWAHAHA
+
+        GameObject[] gameObjects1 = GameObject.FindGameObjectsWithTag("Worker");  //Fill array with all gameobjects with the tag
+        GameObject[] gameObjects2 = GameObject.FindGameObjectsWithTag("Warrior");  //Fill array with all gameobjects with the tag
+        GameObject[] gameObjects3 = GameObject.FindGameObjectsWithTag("Archer");  //Fill array with all gameobjects with the tag
+
+        GameObject closest = null;                          //result: starts at null just in case we don't find anything in range
+
+        float distance = maxDistance * maxDistance;         //square the distance
+        Vector3 position = transform.position;              //our current position
+
+        foreach (GameObject obj in gameObjects1)
+        {
+            Vector3 difference = obj.transform.position - position; //calculate the difference to the object from our current position
+            float curDistance = difference.sqrMagnitude;    //distance requires a square root, which is slow, just using the squared magnitued
+
+            if (curDistance < distance && obj.GetComponent<WorkerScript>().teamNumber != currentTeam)                     //comparing the squared distances
+            {
+                closest = obj;                              //new closest object set
+                distance = curDistance;                     //distance to the object saved for next comparison in loop
+            }
+        }
+
+        foreach (GameObject obj in gameObjects2)
+        {
+            Vector3 difference = obj.transform.position - position; //calculate the difference to the object from our current position
+            float curDistance = difference.sqrMagnitude;    //distance requires a square root, which is slow, just using the squared magnitued
+
+            if (curDistance < distance && obj.GetComponent<Warrior>().teamNumber != currentTeam)                     //comparing the squared distances
+            {
+                closest = obj;                              //new closest object set
+                distance = curDistance;                     //distance to the object saved for next comparison in loop
+            }
+        }
+
+        foreach (GameObject obj in gameObjects3)
+        {
+            Vector3 difference = obj.transform.position - position; //calculate the difference to the object from our current position
+            float curDistance = difference.sqrMagnitude;    //distance requires a square root, which is slow, just using the squared magnitued
+
+            if (curDistance < distance && obj.GetComponent<Archer>().teamNumber != currentTeam)                     //comparing the squared distances
+            {
+                closest = obj;                              //new closest object set
+                distance = curDistance;                     //distance to the object saved for next comparison in loop
+            }
+        }
+
+        //Return the obejct we found, or null if we didn't find anything
+        return closest;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (currentState.Count > 0)

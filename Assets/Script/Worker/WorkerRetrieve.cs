@@ -7,13 +7,19 @@ public class WorkerRetrieve : State
 {
     WorkerScript worker;
     NavMeshAgent agent;
-    GameObject target;
+    public GameObject teamBase;
 
     public override void OnEnter()
     {
         Debug.Log("WorkerRetrieve: OnEnter()");
         worker = sc.gameObject.GetComponent<WorkerScript>();
         agent = worker.GetComponent<NavMeshAgent>();
+        if (worker.GetComponent<WorkerScript>().getTeam() == 0) {
+            teamBase = GameObject.Find("Cat Base");   
+        }
+        if (worker.GetComponent<WorkerScript>().getTeam() == 1) {
+            teamBase = GameObject.Find("Dog Base");   
+        }
         FindBase();
     }
 
@@ -24,8 +30,7 @@ public class WorkerRetrieve : State
 
     public void FindBase()
     {
-        target = sc.FindClosestTarget("Base", Mathf.Infinity);
-        agent.destination = target.transform.position;
+        agent.destination = teamBase.transform.position;
     }
 
     public void TransferResources()
@@ -33,7 +38,7 @@ public class WorkerRetrieve : State
         //Resource in range, give resources
         agent.ResetPath();
 
-        TeamController teamController = target.GetComponent<TeamController>();
+        TeamController teamController = teamBase.GetComponent<TeamController>();
         //teamController.gold += worker.goldCollected;
         teamController.wood += worker.woodCollected;
 

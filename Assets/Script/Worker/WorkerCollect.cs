@@ -47,7 +47,13 @@ public class WorkerCollect : State
             agent.ResetPath();
             // if (target.CompareTag("ResourceArea"))
             // {
-                worker.woodCollected += worker.harvestRate * Time.deltaTime;
+                float collected = target.GetComponent<ResourceArea>().takeResource(worker.harvestRate);
+                if (collected > 0) {
+                    worker.woodCollected += collected * Time.deltaTime;
+                }
+                else {
+                    FindNearestResource();
+                }
             //}
             // else if (target.CompareTag("Gold"))
             // {
