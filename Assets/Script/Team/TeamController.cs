@@ -227,12 +227,12 @@ public class TeamController : MonoBehaviour
                         } 
                         break;
                     case 3:
-                        Debug.Log("Wave 3");
-                        if(workerNum < 10 && randomNum < 4 && gold >= 5 && unitNum < unitCap){
+                        Debug.Log("Wave 2");
+                        if(workerNum < 8 && randomNum < 3 && gold >= 5 && unitNum < unitCap){
                             this.GetComponent<Base>().createWorker = true;
                             gold -= 5;
                             lastAction = 0;
-                        } else if (wood >= 25 && barracksNum < 5 && randomNum >= 4 && randomNum < 8){
+                        } else if (wood >= 25 && barracksNum < 4 && randomNum >= 3 && randomNum < 6){
                             //IDK why but sometimes this runs but doesnt build barracks
                             GameObject[] workers = GameObject.FindGameObjectsWithTag("Worker");
                             for (int count = 0; count < workers.Length; count++){
@@ -244,7 +244,7 @@ public class TeamController : MonoBehaviour
                                     break;
                                 }
                             }
-                        } else if (wood >= 25 && campNum < 5 && randomNum >= 8 && randomNum < 12){
+                        } else if (wood >= 25 && campNum < 8 && randomNum >= 6 && randomNum < 9){
                             //Same with this
                             GameObject[] workers = GameObject.FindGameObjectsWithTag("Worker");
                             for (int count = 0; count < workers.Length; count++){
@@ -256,20 +256,52 @@ public class TeamController : MonoBehaviour
                                     break;
                                 }
                             }
-                        } else if (warriorNum < 15 &&  randomNum >= 12 && randomNum < 16 && unitNum < unitCap){
+                        } else if (warriorNum < 20 &&  randomNum >= 9 && randomNum < 12 && unitNum < unitCap){
+                            float numSoldiers = (int) Math.Round(gold / 5);
+                            GameObject[] barracks = GameObject.FindGameObjectsWithTag("Barracks");
+                            for(int count = 0; count < barracks.Length; count++){
+                                if(count < numSoldiers && count < 5){
+                                    barracks[count].GetComponent<Barracks>().createWarrior = true;
+                                    gold -= 5;
+                                }
+                            }
                             lastAction = 0;
-                            //create warrior at barracks
-                            //Should take longer depending on how many barracks
-                        } else if (archerNum < 15 &&  randomNum >= 16 && randomNum < 20 && unitNum < unitCap){
+                        } else if (archerNum < 20 &&  randomNum >= 12 && randomNum < 15 && unitNum < unitCap){
+                            float numArchers = (int) Math.Round(gold / 5);
+                            GameObject[] barracks = GameObject.FindGameObjectsWithTag("Barracks");
+                            for(int count = 0; count < barracks.Length; count++){
+                                if(count < numArchers && count < 5){
+                                    barracks[count].GetComponent<Barracks>().createArcher = true;
+                                    gold -= 5;
+                                }
+                            }
                             lastAction = 0;
-                            //create archer at barracks
-                            //Should take longer depending on how many barracks
-                        } else if(workerNum >= 10 && barracksNum == 5 && campNum == 5 & warriorNum >= 15 && archerNum >= 15){
-                            waveNumber++;
-                            lastAction = 0;
-                        } else if (randomNum >= 20 && randomNum < 24){
-                            //randomly attack or scout???
-                            lastAction = 0;
+                        } else if (randomNum >= 15 && randomNum < 18 && towerNum < 4 && wood >= 25){
+                            GameObject[] workers = GameObject.FindGameObjectsWithTag("Worker");
+                            for (int count = 0; count < workers.Length; count++){
+                                if(workers[count] != null && workers[count].GetComponent<WorkerScript>().teamNumber == teamNumber){
+                                //maybe renadomize which worker gets accessed;
+                                    workers[count].GetComponent<WorkerScript>().buildTower = true;
+                                    lastAction = 0;
+                                    wood -= 25;
+                                    break;
+                                }
+                            }
+                        }else if (randomNum >= 18 && randomNum <= 24 && (warriorNum + archerNum) > 10){
+                            Debug.Log("ATTACK!!!!");
+                            GameObject[] archers = GameObject.FindGameObjectsWithTag("Archer");
+                            GameObject[] warriors = GameObject.FindGameObjectsWithTag("Warrior");
+                            for(int count = 0; count < archers.Length; count++){
+                                if(archers[count].GetComponent<Archer>().teamNumber == teamNumber){
+                                    archers[count].GetComponent<Archer>().controller.ChangeState(new ArcherInvade());
+                                }
+                            }
+                            for(int count = 0; count < warriors.Length; count++){
+                                if(warriors[count].GetComponent<Warrior>().teamNumber == teamNumber){
+                                    warriors[count].GetComponent<Warrior>().controller.ChangeState(new WarriorInvade());
+                                }
+                            }
+
                         }
                         break;
                     default:

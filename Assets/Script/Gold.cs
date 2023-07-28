@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoldArea : MonoBehaviour
 {
-    [SerializeField] private float goldLeft = 30;
+    [SerializeField] private float goldLeft = 120;
 
     // Start is called before the first frame update
     void Start()
