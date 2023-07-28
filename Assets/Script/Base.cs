@@ -13,11 +13,17 @@ public class Base : MonoBehaviour
     public int teamNumber;
     public GameObject teamBase;
     public GameObject[] teamBases;
-    public float health;
+    [SerializeField] public float health = 50f;
+    public float maxHealth = 50f;
+
+    [SerializeField] Health healthBar;
+
+    void Awake() {
+        healthBar = GetComponentInChildren<Health>();
+    }
 
     void Start()
     {
-        health = 50;
         createWorker = false;
         spawnPosition = new Vector3(transform.position.x + 5, transform.position.y, transform.position.z + 5);
         teamBases = GameObject.FindGameObjectsWithTag("Base");
@@ -26,6 +32,7 @@ public class Base : MonoBehaviour
                 teamBase = teamBases[count];
             }
         }
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -47,7 +54,16 @@ public class Base : MonoBehaviour
 
     public void CreateWorker(Vector3 spawnLocation){
         GameObject Worker = Object.Instantiate(prefabWorker, spawnLocation, Quaternion.identity);
-        Worker.GetComponent<WorkerScript>().teamNumber = teamBase.GetComponent<TeamController>().teamNumber;
-        teamBase.GetComponent<TeamController>().workerNum++;
+        Debug.Log(GetComponent<TeamController>().teamNumber);
+        Worker.GetComponent<WorkerScript>().teamNumber = GetComponent<TeamController>().teamNumber;
+        GetComponent<TeamController>().workerNum++;
+    }
+
+    public void takeDamage(float damage) {
+        health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
+        if (health <= 0) {
+            Destroy(this.gameObject);
+        }
     }
 }

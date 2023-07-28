@@ -3,7 +3,10 @@ guid: 6df6fcc818aa43d469e96519613044a3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - prefabBarracks: {fileID: 5873900200541793051, guid: f5196d6578892b3438d9dd0a5c618cff, type: 3}
+  - prefabCamp: {fileID: 2998874353262487828, guid: 82505854d4e18124ab90144f85096340, type: 3}
+  - healthBar: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

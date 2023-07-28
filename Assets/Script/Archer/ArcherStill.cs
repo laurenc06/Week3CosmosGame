@@ -1,57 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ArcherStill : State
 {
     Archer archer;
-    private Archer archerGO;
-
-    public bool enemyInRange;
-    public GameObject enemy;
+    NavMeshAgent agent;
+    GameObject target;
     public GameObject teamBase;
-
-    UnityEngine.AI.NavMeshAgent agent;
+    public GameObject[] teamBases;
 
     public override void OnEnter()
     {
+        Debug.Log("ArcherStill");
         archer = sc.gameObject.GetComponent<Archer>();
-        archerGO = archer.GetComponent<Archer>();
-        agent = archer.GetComponent<UnityEngine.AI.NavMeshAgent>();
-
-        if (archerGO.getTeam() == 0) {
-            teamBase = GameObject.Find("Cat Base");   
+        agent = archer.GetComponent<NavMeshAgent>();
+        teamBases = GameObject.FindGameObjectsWithTag("Base");
+        for(int count = 0; count < teamBases.Length; count++){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber == archer.GetComponent<Archer>().teamNumber){
+                teamBase = teamBases[count];
+            }
         }
-        if (archerGO.getTeam() == 1) {
-            teamBase = GameObject.Find("Dog Base");   
-        }
-        agent.destination = teamBase.transform.position;
+        target = teamBase;
+        FindBase();
     }
 
     public override void OnUpdate()
     {
-        //What does the guard do?
-        enemyInRange = EnemyInRange();
-
-        if (enemyInRange) {
+        if (EnemyInRange()) {
             sc.AddNewState(new ArcherChase());
         }
-        else {
-            agent.destination = teamBase.transform.position;
-        }
     }
-    
-    public override void OnExit()
+
+    public void FindBase()
     {
-        //This state never exits
+        agent.destination = teamBase.transform.position;
+    }
+
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Base"))
+        {
+            Debug.Log("arrived");
+        }
     }
 
     public bool EnemyInRange() {
-        enemy = sc.FindClosestEnemy(archerGO.viewRange, archerGO.getTeam()); //NEED TO FIGURE OUT WHAT TEAM SO WE KNOW IF ENEMY OR FRIEND
+        GameObject enemy = sc.FindClosestEnemy(archer.GetComponent<Archer>().viewRange, archer.GetComponent<Archer>().teamNumber); 
         if (enemy == null) {
             return false;
         }
         Vector3 difference = enemy.transform.position - agent.transform.position;
-        return difference.sqrMagnitude < (archerGO.viewRange * archerGO.viewRange);
+        return difference.sqrMagnitude < (archer.GetComponent<Archer>().viewRange * archer.GetComponent<Archer>().viewRange);
     }
 }

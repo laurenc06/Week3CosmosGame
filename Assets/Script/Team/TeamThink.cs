@@ -19,7 +19,7 @@ public class TeamThink : State
     public override void OnUpdate()
     {
         lastAction += Time.deltaTime;
-        Debug.Log(team.GetComponent<TeamController>().teamNumber);
+        //Debug.Log(team.GetComponent<TeamController>().teamNumber);
         if(lastAction > actionRate){
             //TeamThink;
         }

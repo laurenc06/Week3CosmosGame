@@ -7,11 +7,18 @@ public class Camp : MonoBehaviour
     public GameObject teamBase;
     public GameObject[] teamBases;
     public int teamNumber;
-    public float health;
+    [SerializeField] public float health = 15f;
+    public float maxHealth = 15f;
+
+    [SerializeField] Health healthBar;
+
+    void Awake() {
+        healthBar = GetComponentInChildren<Health>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        health = 25;
         teamBases = GameObject.FindGameObjectsWithTag("Base");
         for(int count = 0; count < teamBases.Length; count++){
             if(teamBases[count].GetComponent<TeamController>().teamNumber == teamNumber){
@@ -19,6 +26,7 @@ public class Camp : MonoBehaviour
             }
         }
         teamBase.GetComponent<TeamController>().IncreaseUnitCap(5);
+        healthBar.UpdateHealthBar(health, maxHealth);
 
     }
 
@@ -26,5 +34,13 @@ public class Camp : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void takeDamage(float damage) {
+        health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
+        if (health <= 0) {
+            Destroy(this.gameObject);
+        }
     }
 }

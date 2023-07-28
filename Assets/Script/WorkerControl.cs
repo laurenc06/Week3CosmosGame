@@ -21,7 +21,7 @@ public class WorkerControl : State
         //If no resource in range (fog of war), go hunt for some
 
         //For now, just go find stuff
-        Debug.Log("adding WorkerCollect()");
+        //Debug.Log("adding WorkerCollect()");
         sc.AddNewState(new WorkerCollect());
     }
 

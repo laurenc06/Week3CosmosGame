@@ -14,6 +14,7 @@ public class WarriorChase : State
 
     public override void OnEnter()
     {
+        Debug.Log("WarriorChase");
         warrior = sc.gameObject.GetComponent<Warrior>();
         warriorGO = warrior.GetComponent<Warrior>();;
         agent = warrior.GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -24,7 +25,7 @@ public class WarriorChase : State
             teamBase = GameObject.Find("Dog Base");   
         }
         target = sc.FindClosestEnemy(warriorGO.viewRange, warriorGO.getTeam()); 
-        agent.destination = target.transform.position;
+        if (target != null) agent.destination = target.transform.position;
     }
 
     public override void OnUpdate()
@@ -33,7 +34,7 @@ public class WarriorChase : State
         if (enemyInAttackRange()) {
             sc.AddNewState(new WarriorAttack());
         }
-         if (target != null) {
+        if (target != null) {
             agent.destination = target.transform.position;
         }
         else {

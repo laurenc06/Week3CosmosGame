@@ -7,15 +7,23 @@ public class Warrior : MonoBehaviour
     StateController controller;
     public float viewRange = 40f;
     public float attackRange = 2.5f;
-    public float health = 10f;
+    [SerializeField] public float health = 10f;
     public int teamNumber = 1;
     public int damage = 2;
+    public float maxHealth = 10f; //boss health
+
+    [SerializeField] Health healthBar;
+
+    void Awake() {
+        healthBar = GetComponentInChildren<Health>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<StateController>();
         controller.ChangeState(new WarriorControl());
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -26,6 +34,7 @@ public class Warrior : MonoBehaviour
 
     public void takeDamage(float damage) {
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) {
             Destroy(this.gameObject);
         }

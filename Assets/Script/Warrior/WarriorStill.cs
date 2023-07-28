@@ -1,55 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WarriorStill : State
 {
     Warrior warrior;
-    private Warrior warriorGO;
-
-    public bool enemyInRange;
-    public GameObject enemy;
+    NavMeshAgent agent;
+    GameObject target;
     public GameObject teamBase;
-
-    UnityEngine.AI.NavMeshAgent agent;
+    public GameObject[] teamBases;
 
     public override void OnEnter()
     {
+        Debug.Log("WarriorStill");
         warrior = sc.gameObject.GetComponent<Warrior>();
-        warriorGO = warrior.GetComponent<Warrior>();
-        agent = warrior.GetComponent<UnityEngine.AI.NavMeshAgent>();
-
-       if (warriorGO.getTeam() == 0) {
-            teamBase = GameObject.Find("Cat Base");   
+        agent = warrior.GetComponent<NavMeshAgent>();
+        teamBases = GameObject.FindGameObjectsWithTag("Base");
+        for(int count = 0; count < teamBases.Length; count++){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber == warrior.GetComponent<Warrior>().teamNumber){
+                teamBase = teamBases[count];
+            }
         }
-        if (warriorGO.getTeam() == 1) {
-            teamBase = GameObject.Find("Dog Base");   
-        }
-        agent.destination = teamBase.transform.position;
+        target = teamBase;
+        FindBase();
     }
 
     public override void OnUpdate()
     {
-        enemyInRange = EnemyInRange();
-        if (enemyInRange) {
+        if (EnemyInRange()) {
             sc.AddNewState(new WarriorChase());
         }
-        else {
-            agent.destination = teamBase.transform.position;
-        }
     }
-    
-    public override void OnExit()
+
+    public void FindBase()
     {
-        //This state never exits
+        agent.destination = teamBase.transform.position;
+    }
+
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Base"))
+        {
+            Debug.Log("arrived");
+        }
     }
 
     public bool EnemyInRange() {
-        enemy = sc.FindClosestEnemy(warriorGO.viewRange, warriorGO.getTeam()); 
+        GameObject enemy = sc.FindClosestEnemy(warrior.GetComponent<Warrior>().viewRange, warrior.GetComponent<Warrior>().teamNumber); 
         if (enemy == null) {
             return false;
         }
         Vector3 difference = enemy.transform.position - agent.transform.position;
-        return difference.sqrMagnitude < (warriorGO.viewRange * warriorGO.viewRange);
+        return difference.sqrMagnitude < (warrior.GetComponent<Warrior>().viewRange * warrior.GetComponent<Warrior>().viewRange);
     }
 }

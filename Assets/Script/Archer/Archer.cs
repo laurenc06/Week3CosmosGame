@@ -8,14 +8,22 @@ public class Archer : MonoBehaviour
     public float viewRange = 40f;
     public int teamNumber = 1;
     public float attackRange = 8f;
-    public float health = 7f;
+    [SerializeField] public float health = 7f;
+    public float maxHealth = 7f;
     public int damage = 1;
+    
+    [SerializeField] Health healthBar;
+
+    void Awake() {
+        healthBar = GetComponentInChildren<Health>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<StateController>();
         controller.ChangeState(new ArcherControl());
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -26,6 +34,7 @@ public class Archer : MonoBehaviour
 
     public void takeDamage(float damage) {
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) {
             Destroy(this.gameObject);
         }

@@ -114,6 +114,7 @@ public class WorkerBuildCamp : State
 
     public void buildCamp(){
         GameObject Camp = GameObject.Instantiate(worker.GetComponent<WorkerScript>().prefabCamp, target.transform.position, Quaternion.identity);
+        Camp.GetComponent<Camp>().teamNumber = worker.GetComponent<WorkerScript>().teamNumber;
         teamBase.GetComponent<TeamController>().campNum ++;
         target.GetComponent<BuildingWaypoint>().occupied = true;
         Debug.Log("Bye");

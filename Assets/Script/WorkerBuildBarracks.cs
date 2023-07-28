@@ -25,7 +25,7 @@ public class WorkerBuildBarracks : State
         worker = sc.gameObject.GetComponent<WorkerScript>();
         agent = worker.GetComponent<NavMeshAgent>();
         target = FindClosestWaypoint(FindBuildingWaypoints());
-        Debug.Log(target.name);
+        //Debug.Log(target.name);
         building = false;
         moving = false;
         for(int count = 0; count < teamBases.Length; count++){
@@ -45,7 +45,7 @@ public class WorkerBuildBarracks : State
         if (worker == null)
         {
             //Just a check to prevent errors (shouldn't reach this)
-            Debug.Log("unreachable code was reached");
+            //Debug.Log("unreachable code was reached");
             return;
         }
         if(!building){
@@ -54,14 +54,14 @@ public class WorkerBuildBarracks : State
                 target = FindClosestWaypoint(FindBuildingWaypoints());
                 //No resource, find next resource
             } else if(target.GetComponent<BuildingWaypoint>().occupied){
-                Debug.Log("No Space");
+                //Debug.Log("No Space");
                 sc.RemoveTop();
             } else if (agent.destination != target.transform.position && !moving) {
-                Debug.Log("yup");
+                //Debug.Log("yup");
                 agent.destination = target.transform.position;
                 moving = true;
             } else if(Vector3.Distance(worker.transform.position, target.transform.position) <= worker.buildRange){
-                Debug.Log("this");
+                //Debug.Log("this");
                 buildTimer = 0;
                 building = true;
             }
@@ -70,7 +70,7 @@ public class WorkerBuildBarracks : State
                 sc.RemoveTop();
             }
             else if(buildTimer >= buildTime){
-                Debug.Log("here");
+                //Debug.Log("here");
                 buildBarracks();
             }
         }
@@ -111,10 +111,12 @@ public class WorkerBuildBarracks : State
     }
 
     public void buildBarracks(){
-        GameObject Camp = GameObject.Instantiate(worker.GetComponent<WorkerScript>().prefabBarracks, target.transform.position, Quaternion.identity);
+        GameObject Barracks = GameObject.Instantiate(worker.GetComponent<WorkerScript>().prefabBarracks, target.transform.position, Quaternion.identity);
+        Barracks.GetComponent<Barracks>().teamNumber = worker.GetComponent<WorkerScript>().teamNumber;
         teamBase.GetComponent<TeamController>().barracksNum += 1;
+
         target.GetComponent<BuildingWaypoint>().occupied = true;
-        Debug.Log("Bye");
+        ////Debug.Log("Bye");
         sc.RemoveTop();
     }
 }

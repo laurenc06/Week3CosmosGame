@@ -16,12 +16,19 @@ public class WorkerScript : MonoBehaviour
     public float maxWeight = 25;
     public float woodCollected = 0;
     public float goldCollected = 0;
-    public float health = 3f;
+    [SerializeField] public float health = 3f;
+    public float maxHealth = 3f;
     public int teamNumber;
     public bool collectGold;
     public bool collectWood;
     //public float goldCollected = 0;
     public float harvestRate = 2;           //per second
+
+    [SerializeField] Health healthBar;
+
+    void Awake() {
+        healthBar = GetComponentInChildren<Health>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +40,7 @@ public class WorkerScript : MonoBehaviour
         buildRange = 5;
         buildBarracks = false;
         buildCamp = false;
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
 
     // Update is called once per frame
@@ -54,6 +62,7 @@ public class WorkerScript : MonoBehaviour
 
     public void takeDamage(float damage) {
         health -= damage;
+        healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) {
             Destroy(this.gameObject);
         }

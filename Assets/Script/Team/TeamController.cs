@@ -100,21 +100,36 @@ public class TeamController : MonoBehaviour
                                     break;
                                 }
                             }
-                        } else if (warriorNum < 5 &&  randomNum >= 12 && randomNum < 16 && unitNum < unitCap){
+                        } else if (warriorNum < 5 &&  randomNum >= 12 && randomNum < 16 && unitNum < unitCap && gold > 5 && barracksNum > 1){
+                            float numSoldiers = (int) Math.Round(gold / 5);
+                            GameObject[] barracks = GameObject.FindGameObjectsWithTag("Barracks");
+                            for(int count = 0; count < barracks.Length; count++){
+                                if(count < numSoldiers){
+                                    barracks[count].GetComponent<Barracks>().createWarrior = true;
+                                    gold -= 5;
+                                }
+                            }
                             lastAction = 0;
                             //create warrior at barracks
                             //Should take longer depending on how many barracks
-                        } else if (archerNum < 5 &&  randomNum >= 16 && randomNum < 20 && unitNum < unitCap){
+                        } else if (archerNum < 5 &&  randomNum >= 16 && randomNum < 20 && unitNum < unitCap && gold > 5 && barracksNum > 1){
+                            float numArchers = (int) Math.Round(gold / 5);
+                            GameObject[] barracks = GameObject.FindGameObjectsWithTag("Barracks");
+                            for(int count = 0; count < barracks.Length; count++){
+                                if(count < numArchers){
+                                    barracks[count].GetComponent<Barracks>().createArcher = true;
+                                    gold -= 5;
+                                }
+                            }
                             lastAction = 0;
-                            //create archer at barracks
-                            //Should take longer depending on how many barracks
-                        } else if(workerNum >= 4 && barracksNum != 0 && campNum != 0 & warriorNum >= 5 && archerNum >= 5){
-                            waveNumber++;
-                            lastAction = 0;
-                        } else if (randomNum >= 20 && randomNum < 24){
+                        }  else if (randomNum >= 20 && randomNum < 24){
                             //randomly attack or scout???
                             lastAction = 0;
                         }
+                        else if(workerNum >= 4 && barracksNum != 0 && campNum != 0 & warriorNum >= 5 && archerNum >= 5){
+                            waveNumber++;
+                            lastAction = 0;
+                        } 
                         break;
                     case 2:
                         Debug.Log("Wave 2");
