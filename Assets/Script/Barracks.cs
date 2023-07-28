@@ -13,7 +13,7 @@ public class Barracks : MonoBehaviour
     public float spawnRate = 5f;
     public float lastSpawn = 0f;
     public int teamNumber;
-    [SerializeField] public float health = 25f;
+    [SerializeField] public float health = 15f;
     public float maxHealth = 15f;
     [SerializeField] Health healthBar;
     public GameObject teamBase;

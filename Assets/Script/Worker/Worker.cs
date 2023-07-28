@@ -6,7 +6,7 @@ public class Worker : MonoBehaviour
 {
     StateController controller;
 
-    public float viewRange = 50;
+    public float viewRange = 80;
     public float harvestRange = 2;
     public float maxWeight = 25;
     public float woodCollected = 0;

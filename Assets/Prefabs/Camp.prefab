@@ -378,7 +378,7 @@ MonoBehaviour:
   teamBase: {fileID: 0}
   teamBases: []
   teamNumber: 0
-  health: 0
+  health: 15
   maxHealth: 15
   healthBar: {fileID: 0}
 --- !u!208 &7187393884720827427

@@ -46,6 +46,7 @@ public class TeamController : MonoBehaviour
         waveNumber = 0;
         wood = 25;
         gold = 25;
+        Time.timeScale = 5f;
     }
 
     // Update is called once per frame

@@ -268,7 +268,7 @@ MonoBehaviour:
   spawnRate: 5
   lastSpawn: 0
   teamNumber: 0
-  health: 0
+  health: 15
   maxHealth: 15
   healthBar: {fileID: 0}
   teamBase: {fileID: 0}

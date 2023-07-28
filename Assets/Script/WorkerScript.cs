@@ -12,7 +12,7 @@ public class WorkerScript : MonoBehaviour
     public bool buildBarracks;
     public bool buildCamp;
     public bool buildTower;
-    public float viewRange = 50;
+    public float viewRange = 30;
     public float harvestRange = 7;
     public float buildRange;
     public float maxWeight = 25;

@@ -82,7 +82,8 @@ public class WorkerCollect : State
         if (target == null)
         {
             //No resource found, remove state
-            sc.RemoveTop();
+            worker.GetComponent<WorkerScript>().collectWood = !worker.GetComponent<WorkerScript>().collectWood;
+            worker.GetComponent<WorkerScript>().collectGold = !worker.GetComponent<WorkerScript>().collectGold;
         }
         else
         {
@@ -96,8 +97,7 @@ public class WorkerCollect : State
         if (target == null)
         {
             //No resource found, remove state
-            worker.GetComponent<WorkerScript>().collectWood = !worker.GetComponent<WorkerScript>().collectWood;
-            worker.GetComponent<WorkerScript>().collectGold = !worker.GetComponent<WorkerScript>().collectGold;
+            sc.RemoveTop();
             
         }
         else
