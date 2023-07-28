@@ -23,6 +23,7 @@ public class WarriorStill : State
             }
         }
         target = teamBase;
+        Debug.Log(teamBase.name);
         FindBase();
     }
 

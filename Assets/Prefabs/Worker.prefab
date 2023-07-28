@@ -536,6 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabBarracks: {fileID: 5873900200541793051, guid: f5196d6578892b3438d9dd0a5c618cff, type: 3}
   prefabCamp: {fileID: 2998874353262487828, guid: 82505854d4e18124ab90144f85096340, type: 3}
+  prefabTower: {fileID: 4660812771320231379, guid: 8932db41d824df34994f2a7d8766e20b, type: 3}
   buildBarracks: 0
   buildCamp: 0
   viewRange: 50

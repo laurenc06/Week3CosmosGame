@@ -17,6 +17,8 @@ public class Tower : MonoBehaviour
     public int damage = 1;
     [SerializeField] public float health = 20f;
     public float maxHealth = 15f;
+    public GameObject teamBase;
+    public GameObject[] teamBases;
 
     [SerializeField] Health healthBar;
 
@@ -28,7 +30,14 @@ public class Tower : MonoBehaviour
     void Start()
     {
         healthBar.UpdateHealthBar(health, maxHealth);
+        teamBases = GameObject.FindGameObjectsWithTag("Base");
+        for(int count = 0; count < teamBases.Length; count++){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber == teamNumber){
+                teamBase = teamBases[count];
+            }
+        }
     }
+
 
        // Update is called once per frame
     void Update()

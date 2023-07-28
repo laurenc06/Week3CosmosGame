@@ -8,8 +8,10 @@ public class WorkerScript : MonoBehaviour
 
     public GameObject prefabBarracks;
     public GameObject prefabCamp;
+    public GameObject prefabTower;
     public bool buildBarracks;
     public bool buildCamp;
+    public bool buildTower;
     public float viewRange = 50;
     public float harvestRange = 7;
     public float buildRange;
@@ -52,6 +54,9 @@ public class WorkerScript : MonoBehaviour
         } else if (buildCamp){
             controller.ChangeState(new WorkerBuildCamp());
             buildCamp = false;
+        } else if (buildTower){
+            controller.ChangeState(new WorkerBuildTower());
+            buildTower = false;
         }
     }
 
