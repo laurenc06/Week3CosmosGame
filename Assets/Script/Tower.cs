@@ -42,6 +42,8 @@ public class Tower : MonoBehaviour
        // Update is called once per frame
     void Update()
     {
+        transform.eulerAngles = new Vector3(0, transform.rotation.y, 0);
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         lastFire += Time.deltaTime;
         target = FindClosestEnemy(); 
 

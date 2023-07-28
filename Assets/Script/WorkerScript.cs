@@ -24,7 +24,9 @@ public class WorkerScript : MonoBehaviour
     public bool collectGold;
     public bool collectWood;
     //public float goldCollected = 0;
-    public float harvestRate = 2;           //per second
+    public float harvestRate = 2;  
+    public GameObject teamBase;
+    public GameObject[] teamBases;         //per second
 
     [SerializeField] Health healthBar;
 
@@ -43,6 +45,12 @@ public class WorkerScript : MonoBehaviour
         buildBarracks = false;
         buildCamp = false;
         healthBar.UpdateHealthBar(health, maxHealth);
+        teamBases = GameObject.FindGameObjectsWithTag("Base");
+        for(int count = 0; count < teamBases.Length; count++){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber == teamNumber){
+                teamBase = teamBases[count];
+            }
+        }
     }
 
     // Update is called once per frame
@@ -69,6 +77,7 @@ public class WorkerScript : MonoBehaviour
         health -= damage;
         healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) {
+            teamBase.GetComponent<TeamController>().workerNum -= 1;
             Destroy(this.gameObject);
         }
     }

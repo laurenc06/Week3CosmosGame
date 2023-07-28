@@ -27,7 +27,7 @@ public class Barracks : MonoBehaviour
     {
         createWarrior = false;
         createArcher = false;
-        spawnPosition = new Vector3(transform.position.x + 5, transform.position.y + 2, transform.position.z + 5);
+        spawnPosition = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
         teamBases = GameObject.FindGameObjectsWithTag("Base");
         for(int count = 0; count < teamBases.Length; count++){
             if(teamBases[count].GetComponent<TeamController>().teamNumber == teamNumber){
@@ -61,13 +61,13 @@ public class Barracks : MonoBehaviour
     public void CreateWarrior(Vector3 spawnLocation){
         GameObject Warrior = Object.Instantiate(prefabWarrior, spawnLocation, Quaternion.identity);
         Warrior.GetComponent<Warrior>().teamNumber = teamNumber;
-        teamBase.GetComponent<TeamController>().workerNum++;
+        teamBase.GetComponent<TeamController>().warriorNum++;
     }
 
     public void CreateArcher(Vector3 spawnLocation){
         GameObject Archer = Object.Instantiate(prefabArcher, spawnLocation, Quaternion.identity);
         Archer.GetComponent<Archer>().teamNumber = teamNumber;
-        teamBase.GetComponent<TeamController>().workerNum++;
+        teamBase.GetComponent<TeamController>().archerNum++;
     }
 
     public void takeDamage(float damage) {

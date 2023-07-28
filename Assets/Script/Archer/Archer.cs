@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Archer : MonoBehaviour
 {
-    StateController controller;
+    public StateController controller;
     public float viewRange = 40f;
     public int teamNumber = 1;
     public float attackRange = 8f;
     [SerializeField] public float health = 7f;
     public float maxHealth = 7f;
     public int damage = 1;
+    public GameObject teamBase;
+    public GameObject[] teamBases;
     
     [SerializeField] Health healthBar;
 
@@ -24,6 +26,12 @@ public class Archer : MonoBehaviour
         controller = GetComponent<StateController>();
         controller.ChangeState(new ArcherControl());
         healthBar.UpdateHealthBar(health, maxHealth);
+        teamBases = GameObject.FindGameObjectsWithTag("Base");
+        for(int count = 0; count < teamBases.Length; count++){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber == teamNumber){
+                teamBase = teamBases[count];
+            }
+        }
     }
 
     // Update is called once per frame
@@ -36,6 +44,7 @@ public class Archer : MonoBehaviour
         health -= damage;
         healthBar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) {
+            teamBase.GetComponent<TeamController>().archerNum -= 1;
             Destroy(this.gameObject);
         }
     }

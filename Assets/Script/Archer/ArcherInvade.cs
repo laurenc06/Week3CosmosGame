@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ArcherStill : State
+public class ArcherInvade : State
 {
     Archer archer;
     NavMeshAgent agent;
@@ -13,12 +13,12 @@ public class ArcherStill : State
 
     public override void OnEnter()
     {
-        Debug.Log("ArcherStill");
+        Debug.Log("ArcherInvade");
         archer = sc.gameObject.GetComponent<Archer>();
         agent = archer.GetComponent<NavMeshAgent>();
         teamBases = GameObject.FindGameObjectsWithTag("Base");
         for(int count = 0; count < teamBases.Length; count++){
-            if(teamBases[count].GetComponent<TeamController>().teamNumber == archer.GetComponent<Archer>().teamNumber){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber != archer.GetComponent<Archer>().teamNumber){
                 teamBase = teamBases[count];
             }
         }

@@ -56,7 +56,8 @@ public class Base : MonoBehaviour
         GameObject Worker = Object.Instantiate(prefabWorker, spawnLocation, Quaternion.identity);
         Debug.Log(GetComponent<TeamController>().teamNumber);
         Worker.GetComponent<WorkerScript>().teamNumber = GetComponent<TeamController>().teamNumber;
-        GetComponent<TeamController>().workerNum++;
+        Debug.Log(teamBase.name);
+        teamBase.GetComponent<TeamController>().workerNum++;
     }
 
     public void takeDamage(float damage) {

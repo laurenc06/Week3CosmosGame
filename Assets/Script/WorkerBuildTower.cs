@@ -114,7 +114,6 @@ public class WorkerBuildTower : State
 
     public void buildTower(){
         Vector3 spawnPosition = target.transform.position;
-        spawnPosition.y += 2;
         GameObject Tower = GameObject.Instantiate(worker.GetComponent<WorkerScript>().prefabTower, spawnPosition, Quaternion.identity);
         Tower.GetComponent<Tower>().teamNumber = worker.GetComponent<WorkerScript>().teamNumber;
         teamBase.GetComponent<TeamController>().towerNum ++;

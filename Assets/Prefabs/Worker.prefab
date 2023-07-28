@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2596603873198196124}
   - component: {fileID: 1465107126566246900}
   - component: {fileID: 4458085175374473658}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7954639988733143994}
   - component: {fileID: 7969529969640002248}
   - component: {fileID: 2605094463556806606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 3113137374729171147}
   - component: {fileID: 4088892678237588934}
   - component: {fileID: 2795375536547885988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 6479218646634377069}
   - component: {fileID: 3662594276601905513}
   - component: {fileID: 1619389802520614719}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,10 +374,10 @@ GameObject:
   - component: {fileID: 7335772120108908101}
   - component: {fileID: 7379409701415444447}
   - component: {fileID: 8454965680395087268}
-  - component: {fileID: 8365057452616543955}
   - component: {fileID: 1930367920084689671}
   - component: {fileID: 8174314617256666668}
-  m_Layer: 0
+  - component: {fileID: -628816626952271825}
+  m_Layer: 6
   m_Name: Worker
   m_TagString: Worker
   m_Icon: {fileID: 0}
@@ -495,7 +495,52 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &8365057452616543955
+--- !u!114 &1930367920084689671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513456183928221629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df6fcc818aa43d469e96519613044a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabBarracks: {fileID: 5873900200541793051, guid: f5196d6578892b3438d9dd0a5c618cff, type: 3}
+  prefabCamp: {fileID: 2998874353262487828, guid: 82505854d4e18124ab90144f85096340, type: 3}
+  prefabTower: {fileID: 4660812771320231379, guid: 8932db41d824df34994f2a7d8766e20b, type: 3}
+  buildBarracks: 0
+  buildCamp: 0
+  buildTower: 0
+  viewRange: 50
+  harvestRange: 3
+  buildRange: 3
+  maxWeight: 25
+  woodCollected: 0
+  goldCollected: 0
+  health: 3
+  maxHealth: 3
+  teamNumber: 0
+  collectGold: 0
+  collectWood: 0
+  harvestRate: 2
+  teamBase: {fileID: 0}
+  teamBases: []
+  healthBar: {fileID: 0}
+--- !u!114 &8174314617256666668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8513456183928221629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e052c2e40ab158c4d99ed42462d067e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &-628816626952271825
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -503,7 +548,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8513456183928221629}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -522,48 +567,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1930367920084689671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8513456183928221629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df6fcc818aa43d469e96519613044a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabBarracks: {fileID: 5873900200541793051, guid: f5196d6578892b3438d9dd0a5c618cff, type: 3}
-  prefabCamp: {fileID: 2998874353262487828, guid: 82505854d4e18124ab90144f85096340, type: 3}
-  prefabTower: {fileID: 4660812771320231379, guid: 8932db41d824df34994f2a7d8766e20b, type: 3}
-  buildBarracks: 0
-  buildCamp: 0
-  viewRange: 50
-  harvestRange: 3
-  buildRange: 3
-  maxWeight: 25
-  woodCollected: 0
-  goldCollected: 0
-  health: 3
-  maxHealth: 3
-  teamNumber: 0
-  collectGold: 0
-  collectWood: 0
-  harvestRate: 2
-  healthBar: {fileID: 0}
---- !u!114 &8174314617256666668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8513456183928221629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e052c2e40ab158c4d99ed42462d067e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8694863957912023036
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,7 +576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2687009051439236234}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

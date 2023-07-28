@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2098696183810840066}
   - component: {fileID: 7230078886438083661}
   - component: {fileID: 5937759833965471527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Warrior
   m_TagString: Warrior
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 841531340042524610}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 5855125024653635740}
   - component: {fileID: 4015704881839369363}
   - component: {fileID: 8242948829695283376}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 2017435580033434363}
   - component: {fileID: 4867448381770773421}
   - component: {fileID: 1521173381453049020}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 4913151136350081014}
   - component: {fileID: 391520911870898427}
   - component: {fileID: 806508418786033131}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 8042347677960282479}
   - component: {fileID: 9198950210940256654}
   - component: {fileID: 6740973666309939147}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WarriorStill : State
+public class WarriorInvade : State
 {
     Warrior warrior;
     NavMeshAgent agent;
@@ -13,12 +13,12 @@ public class WarriorStill : State
 
     public override void OnEnter()
     {
-        Debug.Log("WarriorStill");
+        Debug.Log("WarriorInvade");
         warrior = sc.gameObject.GetComponent<Warrior>();
         agent = warrior.GetComponent<NavMeshAgent>();
         teamBases = GameObject.FindGameObjectsWithTag("Base");
         for(int count = 0; count < teamBases.Length; count++){
-            if(teamBases[count].GetComponent<TeamController>().teamNumber == warrior.GetComponent<Warrior>().teamNumber){
+            if(teamBases[count].GetComponent<TeamController>().teamNumber != warrior.GetComponent<Warrior>().teamNumber){
                 teamBase = teamBases[count];
             }
         }
